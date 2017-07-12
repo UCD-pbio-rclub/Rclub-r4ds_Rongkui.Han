@@ -449,8 +449,15 @@ AddAnd(character())
 ```
 
 ###RegExpOne exercises  
-Lesson 1: abc  
-Lesson 1 1/2: 123  
-Lesson 2:  ...\\.
+Lesson 1: abc   
+Lesson 1 1/2: 123 or \\d\\d\\d   
+Lesson 2:  ...\\.  
+Lesson 3: matching specific characters   
+[cmf]an   
+Lesson 4: exclusing specific characters  
+[^b]og  
+Lesson 5: character ranges  
+[A-Z]\\w\\w
+
 
 
