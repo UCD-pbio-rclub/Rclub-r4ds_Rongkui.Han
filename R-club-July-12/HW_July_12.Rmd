@@ -85,3 +85,39 @@ str_sort(x, locale = "haw")
 
 ####14.2.5 Exercises  
 1. In code that doesn’t use stringr, you’ll often see paste() and paste0(). What’s the difference between the two functions? What stringr function are they equivalent to? How do the functions differ in their handling of NA?
+```{r}
+paste(c(2,"R", NA))
+paste0(c(2,"R", NA))
+#no difference here.
+
+## If you pass several vectors to paste0, they are concatenated in a vectorized way.
+(nth <- paste0(1:12, c("st", "nd", "rd", rep("th", 9))))
+(nth2 <- paste(1:12, c("st", "nd", "rd", rep("th", 9))))
+#So it looks like paste() has a default space when concatinating things. 
+
+## To collapse the output into a single string, pass a collapse argument.
+paste0(nth, collapse = ", ")
+paste(nth, collapse = ", ")
+#no difference here. 
+```
+
+2. In your own words, describe the difference between the sep and collapse arguments to str_c().  
+*sep is when the input is multiple elements and the output is one element. collapse is when the input is one vector of multiple elements and the output is one element.*  
+
+3. Use str_length() and str_sub() to extract the middle character from a string. What will you do if the string has an even number of characters?    
+```{r}
+a = "This is a string in R" #odd number
+str_sub(a, ceiling(str_length(a)/2), ceiling(str_length(a)/2))
+b = "This a string in R" #even number
+#I think it depends on what you mean by the middle character. WHen there length is even technically there is no middle character... assuming the middle two characters are the middle characters:
+str_sub(b, str_length(b)/2, (str_length(b)/2 + 1))
+```
+
+4. What does str_wrap() do? When might you want to use it?  
+```{r}
+?str_wrap()
+harry = "But he understood at last what Dumbledore had been trying to tell him. It was, he thought, the difference between being dragged into the arena to face a battle to the death and walking into the arena with your head held high. Some people, perhaps, would say that there was little to choose between the two ways, but Dumbledore knew - and so do I, thought Harry, with a rush of fierce pride, and so did my parents - that there was all the difference in the world."
+writeLines(str_wrap(harry, width = 45, indent = 4))
+```
+
+
