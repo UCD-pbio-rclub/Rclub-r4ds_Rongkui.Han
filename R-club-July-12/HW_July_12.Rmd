@@ -119,5 +119,40 @@ str_sub(b, str_length(b)/2, (str_length(b)/2 + 1))
 harry = "But he understood at last what Dumbledore had been trying to tell him. It was, he thought, the difference between being dragged into the arena to face a battle to the death and walking into the arena with your head held high. Some people, perhaps, would say that there was little to choose between the two ways, but Dumbledore knew - and so do I, thought Harry, with a rush of fierce pride, and so did my parents - that there was all the difference in the world."
 writeLines(str_wrap(harry, width = 45, indent = 4))
 ```
+Formatting a paragraph I guess?  
+
+5. What does str_trim() do? What’s the opposite of str_trim()?  
+```{r}
+?str_trim()
+str_trim("  String with trailing and leading white space\t")
+str_pad("String needing trailing and leading white space", width = 55, side = "both")
+```
+
+6. Write a function that turns (e.g.) a vector c("a", "b", "c") into the string a, b, and c. Think carefully about what it should do if given a vector of length 0, 1, or 2.
+
+```{r}
+AddAnd = function(x) {
+  if (length(x) == 0) {
+    print("and")
+  } else if (length(x) == 1) {
+    print(x)
+  } else {
+    library(stringr)
+    b = str_c(x[1:(length(x)-1)], collapse = ", ")
+    c = str_c(" and ", x[length(x)], sep = "")
+    d = str_c(b, c, sep = "")
+    print(d)
+  }  
+}
+AddAnd(c("Apple", "Banana", "Orange"))
+AddAnd(c("Apple", "Orange"))
+AddAnd("Orange")
+AddAnd(character())
+```
+
+###RegExpOne exercises  
+Lesson 1: abc  
+Lesson 1 1/2: 123 or \\d\\d\\d 
+Lesson 2:  ...\\.
 
 

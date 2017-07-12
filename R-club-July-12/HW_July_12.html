@@ -161,6 +161,165 @@ x</code></pre>
 <pre class="r"><code>writeLines(x) #weird.</code></pre>
 <pre><code>## &quot;
 ## \</code></pre>
+<pre class="r"><code>writeLines(&quot;\n&quot;) #new line</code></pre>
+<pre class="r"><code>writeLines(&quot;\t&quot;) #tab</code></pre>
+<pre class="r"><code>writeLines(&quot;\u00b5&quot;)</code></pre>
+<pre><code>## µ</code></pre>
+<pre class="r"><code>c(&quot;one&quot;,&quot;two&quot;,&quot;three&quot;)</code></pre>
+<pre><code>## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</code></pre>
+<div id="string-length" class="section level4">
+<h4>14.2.1 String length</h4>
+<pre class="r"><code>str_length(c(&quot;a&quot;,&quot;R for data science&quot;, NA)) #space counts as length too</code></pre>
+<pre><code>## [1]  1 18 NA</code></pre>
+</div>
+<div id="combining-stings" class="section level4">
+<h4>14.2.2 Combining stings</h4>
+<pre class="r"><code>str_c(&quot;x&quot;,&quot;y&quot;) #wow</code></pre>
+<pre><code>## [1] &quot;xy&quot;</code></pre>
+<pre class="r"><code>str_c(&quot;x&quot;,&quot;y&quot;,&quot;z&quot;)</code></pre>
+<pre><code>## [1] &quot;xyz&quot;</code></pre>
+<pre class="r"><code>str_c(&quot;x&quot;,&quot;y&quot;, sep = &quot;, &quot;)</code></pre>
+<pre><code>## [1] &quot;x, y&quot;</code></pre>
+<pre class="r"><code>x = c(&quot;abc&quot;,NA)
+str_c(&quot;|-&quot;,x,&quot;-|&quot;)</code></pre>
+<pre><code>## [1] &quot;|-abc-|&quot; NA</code></pre>
+<pre class="r"><code>str_c(&quot;|-&quot;,str_replace_na(x),&quot;-|&quot;)</code></pre>
+<pre><code>## [1] &quot;|-abc-|&quot; &quot;|-NA-|&quot;</code></pre>
+<pre class="r"><code>str_replace_na(x) #turns NA into literal &quot;NA&quot;</code></pre>
+<pre><code>## [1] &quot;abc&quot; &quot;NA&quot;</code></pre>
+<pre class="r"><code>str_c(&quot;prefix-&quot;, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), &quot;-suffix&quot;)</code></pre>
+<pre><code>## [1] &quot;prefix-a-suffix&quot; &quot;prefix-b-suffix&quot; &quot;prefix-c-suffix&quot;</code></pre>
+<pre class="r"><code>name = &quot;Hadley&quot;
+time_of_day = &quot;morning&quot;
+birthday = FALSE
+str_c(&quot;Good &quot;,time_of_day, &quot; &quot;, name, if (birthday) &quot; and HAPPY BIRTHDAY&quot;, &quot;.&quot;)</code></pre>
+<pre><code>## [1] &quot;Good morning Hadley.&quot;</code></pre>
+<pre class="r"><code>birthday2 = TRUE
+str_c(&quot;Good &quot;,time_of_day, &quot; &quot;, name, if (birthday2) &quot; and HAPPY BIRTHDAY&quot;, &quot;.&quot;)</code></pre>
+<pre><code>## [1] &quot;Good morning Hadley and HAPPY BIRTHDAY.&quot;</code></pre>
+<pre class="r"><code>str_c(c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;), collapse = &quot;,&quot;) #to collapse a vector into a single string. </code></pre>
+<pre><code>## [1] &quot;x,y,z&quot;</code></pre>
+</div>
+<div id="subsetting-strings" class="section level4">
+<h4>14.2.3 Subsetting strings</h4>
+<pre class="r"><code>x = c(&quot;Apple&quot;,&quot;Banana&quot;,&quot;Pear&quot;)
+str_sub(x,1,3)</code></pre>
+<pre><code>## [1] &quot;App&quot; &quot;Ban&quot; &quot;Pea&quot;</code></pre>
+<pre class="r"><code>str_sub(x, -3, -1) #negative numbers count backwards from end</code></pre>
+<pre><code>## [1] &quot;ple&quot; &quot;ana&quot; &quot;ear&quot;</code></pre>
+<pre class="r"><code>str_sub(&quot;a&quot;, 1, 5) #won't fail if string is too short</code></pre>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<pre class="r"><code>str_sub(x, 1, 1) = str_to_lower(str_sub(x,1,1))
+x</code></pre>
+<pre><code>## [1] &quot;apple&quot;  &quot;banana&quot; &quot;pear&quot;</code></pre>
+<pre class="r"><code>#accidentally found this fun thing:
+str_sub(x, 1, 1) = str_to_lower(str_sub(x,1,3))
+x</code></pre>
+<pre><code>## [1] &quot;apppple&quot;  &quot;bananana&quot; &quot;peaear&quot;</code></pre>
+</div>
+<div id="locales" class="section level4">
+<h4>14.2.4 Locales</h4>
+<pre class="r"><code>x = c(&quot;apple&quot;, &quot;eggplant&quot;, &quot;banana&quot;)
+str_sort(x, locale = &quot;en&quot;)</code></pre>
+<pre><code>## [1] &quot;apple&quot;    &quot;banana&quot;   &quot;eggplant&quot;</code></pre>
+<pre class="r"><code>str_sort(x, locale = &quot;haw&quot;)</code></pre>
+<pre><code>## [1] &quot;apple&quot;    &quot;eggplant&quot; &quot;banana&quot;</code></pre>
+</div>
+<div id="exercises" class="section level4">
+<h4>14.2.5 Exercises</h4>
+<ol style="list-style-type: decimal">
+<li>In code that doesn’t use stringr, you’ll often see paste() and paste0(). What’s the difference between the two functions? What stringr function are they equivalent to? How do the functions differ in their handling of NA?</li>
+</ol>
+<pre class="r"><code>paste(c(2,&quot;R&quot;, NA))</code></pre>
+<pre><code>## [1] &quot;2&quot;  &quot;R&quot;  &quot;NA&quot;</code></pre>
+<pre class="r"><code>paste0(c(2,&quot;R&quot;, NA))</code></pre>
+<pre><code>## [1] &quot;2&quot;  &quot;R&quot;  &quot;NA&quot;</code></pre>
+<pre class="r"><code>#no difference here.
+
+## If you pass several vectors to paste0, they are concatenated in a vectorized way.
+(nth &lt;- paste0(1:12, c(&quot;st&quot;, &quot;nd&quot;, &quot;rd&quot;, rep(&quot;th&quot;, 9))))</code></pre>
+<pre><code>##  [1] &quot;1st&quot;  &quot;2nd&quot;  &quot;3rd&quot;  &quot;4th&quot;  &quot;5th&quot;  &quot;6th&quot;  &quot;7th&quot;  &quot;8th&quot;  &quot;9th&quot;  &quot;10th&quot;
+## [11] &quot;11th&quot; &quot;12th&quot;</code></pre>
+<pre class="r"><code>(nth2 &lt;- paste(1:12, c(&quot;st&quot;, &quot;nd&quot;, &quot;rd&quot;, rep(&quot;th&quot;, 9))))</code></pre>
+<pre><code>##  [1] &quot;1 st&quot;  &quot;2 nd&quot;  &quot;3 rd&quot;  &quot;4 th&quot;  &quot;5 th&quot;  &quot;6 th&quot;  &quot;7 th&quot;  &quot;8 th&quot; 
+##  [9] &quot;9 th&quot;  &quot;10 th&quot; &quot;11 th&quot; &quot;12 th&quot;</code></pre>
+<pre class="r"><code>#So it looks like paste() has a default space when concatinating things. 
+
+## To collapse the output into a single string, pass a collapse argument.
+paste0(nth, collapse = &quot;, &quot;)</code></pre>
+<pre><code>## [1] &quot;1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th&quot;</code></pre>
+<pre class="r"><code>paste(nth, collapse = &quot;, &quot;)</code></pre>
+<pre><code>## [1] &quot;1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th&quot;</code></pre>
+<pre class="r"><code>#no difference here. </code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>In your own words, describe the difference between the sep and collapse arguments to str_c().<br />
+<em>sep is when the input is multiple elements and the output is one element. collapse is when the input is one vector of multiple elements and the output is one element.</em></p></li>
+<li><p>Use str_length() and str_sub() to extract the middle character from a string. What will you do if the string has an even number of characters?</p></li>
+</ol>
+<pre class="r"><code>a = &quot;This is a string in R&quot; #odd number
+str_sub(a, ceiling(str_length(a)/2), ceiling(str_length(a)/2))</code></pre>
+<pre><code>## [1] &quot;s&quot;</code></pre>
+<pre class="r"><code>b = &quot;This a string in R&quot; #even number
+#I think it depends on what you mean by the middle character. WHen there length is even technically there is no middle character... assuming the middle two characters are the middle characters:
+str_sub(b, str_length(b)/2, (str_length(b)/2 + 1))</code></pre>
+<pre><code>## [1] &quot;tr&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>What does str_wrap() do? When might you want to use it?</li>
+</ol>
+<pre class="r"><code>?str_wrap()
+harry = &quot;But he understood at last what Dumbledore had been trying to tell him. It was, he thought, the difference between being dragged into the arena to face a battle to the death and walking into the arena with your head held high. Some people, perhaps, would say that there was little to choose between the two ways, but Dumbledore knew - and so do I, thought Harry, with a rush of fierce pride, and so did my parents - that there was all the difference in the world.&quot;
+writeLines(str_wrap(harry, width = 45, indent = 4))</code></pre>
+<pre><code>##     But he understood at last what Dumbledore had
+## been trying to tell him. It was, he thought,
+## the difference between being dragged into
+## the arena to face a battle to the death and
+## walking into the arena with your head held
+## high. Some people, perhaps, would say that
+## there was little to choose between the two
+## ways, but Dumbledore knew - and so do I,
+## thought Harry, with a rush of fierce pride,
+## and so did my parents - that there was all
+## the difference in the world.</code></pre>
+<p>Formatting a paragraph I guess?</p>
+<ol start="5" style="list-style-type: decimal">
+<li>What does str_trim() do? What’s the opposite of str_trim()?</li>
+</ol>
+<pre class="r"><code>?str_trim()
+str_trim(&quot;  String with trailing and leading white space\t&quot;)</code></pre>
+<pre><code>## [1] &quot;String with trailing and leading white space&quot;</code></pre>
+<pre class="r"><code>str_pad(&quot;String needing trailing and leading white space&quot;, width = 55, side = &quot;both&quot;)</code></pre>
+<pre><code>## [1] &quot;    String needing trailing and leading white space    &quot;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Write a function that turns (e.g.) a vector c(“a”, “b”, “c”) into the string a, b, and c. Think carefully about what it should do if given a vector of length 0, 1, or 2.</li>
+</ol>
+<pre class="r"><code>AddAnd = function(x) {
+  if (length(x) == 0) {
+    print(&quot;and&quot;)
+  } else if (length(x) == 1) {
+    print(x)
+  } else {
+    library(stringr)
+    b = str_c(x[1:(length(x)-1)], collapse = &quot;, &quot;)
+    c = str_c(&quot; and &quot;, x[length(x)], sep = &quot;&quot;)
+    d = str_c(b, c, sep = &quot;&quot;)
+    print(d)
+  }  
+}
+AddAnd(c(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;))</code></pre>
+<pre><code>## [1] &quot;Apple, Banana and Orange&quot;</code></pre>
+<pre class="r"><code>AddAnd(c(&quot;Apple&quot;, &quot;Orange&quot;))</code></pre>
+<pre><code>## [1] &quot;Apple and Orange&quot;</code></pre>
+<pre class="r"><code>AddAnd(&quot;Orange&quot;)</code></pre>
+<pre><code>## [1] &quot;Orange&quot;</code></pre>
+<pre class="r"><code>AddAnd(character())</code></pre>
+<pre><code>## [1] &quot;and&quot;</code></pre>
+</div>
+</div>
+<div id="regexpone-exercises" class="section level3">
+<h3>RegExpOne exercises</h3>
+<p>Lesson 1: abc<br />
+Lesson 1 1/2: 123<br />
+Lesson 2: …\.</p>
 </div>
 
 
