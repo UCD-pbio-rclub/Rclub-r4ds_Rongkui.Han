@@ -101,8 +101,17 @@ paste(nth, collapse = ", ")
 #no difference here. 
 ```
 
+equivalent: str_c(). paste() and str_c() treat NA differently. paste() treats NA as "NA", str_c() treats NA as NA.  
+
 2. In your own words, describe the difference between the sep and collapse arguments to str_c().  
 *sep is when the input is multiple elements and the output is one element. collapse is when the input is one vector of multiple elements and the output is one element.*  
+
+```{r}
+str_c(c("a","b","c"), c("d", "e", "f"), sep = "_")
+str_c(c("a","b","c"), c("d", "e", "f"), collapse = "_")
+str_c(c("a","b","c"), c("d", "e", "f"), sep = "0", collapse = "_")
+```
+
 
 3. Use str_length() and str_sub() to extract the middle character from a string. What will you do if the string has an even number of characters?    
 ```{r}
@@ -206,5 +215,33 @@ Problem 8: parsing and extrating data from a URL
 
 #####14.3.5.1 Exercises  
 1. Describe, in words, what these expressions will match:  
-- (.)\1\1
+- (.)\1\1   
+Looking for triplexes. no quote means it has gone through string processing, like wirteLine().  
+
+- "(.)(.)\\2\\1"  
+Looking for "abba".  
+
+- (..)\1  
+looking for "abab".  
+
+- "(.).\\1.\\1"  
+Looking for "axaya"  
+
+- "(.)(.)(.).*\\3\\2\\1"  
+Looking for abcxyzyzxcba. with "abc" and "cba" flanking anything.  
+
+2. Construct regular expressions to match words that:  
+
+- Start and end with the same character.  
+
+"\\W([A-za-z])[a-z]*\\1\\W"  
+
+- Contain a repeated pair of letters (e.g. “church” contains “ch” repeated twice.)  
+
+"\\W([A-Za-z])[a-z]*\\1\\W"  
+
+- Contain one letter repeated in at least three places (e.g. “eleven” contains three “e”s.)    
+
+"\\W([A-Za-z][a-z]\*\\1[a-z]\*\\1\\W"
+
 
