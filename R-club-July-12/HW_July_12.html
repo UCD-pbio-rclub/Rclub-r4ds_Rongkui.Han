@@ -315,8 +315,8 @@ AddAnd(c(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;))</code></pre
 <pre><code>## [1] &quot;and&quot;</code></pre>
 </div>
 </div>
-<div id="regexpone-exercises" class="section level3">
-<h3>RegExpOne exercises</h3>
+<div id="regexone-exercises" class="section level3">
+<h3>RegexOne exercises</h3>
 <p>Lesson 1: abc<br />
 Lesson 1 1/2: 123 or \d\d\d<br />
 Lesson 2: …\.<br />
@@ -325,7 +325,53 @@ Lesson 3: matching specific characters<br />
 Lesson 4: exclusing specific characters<br />
 [^b]og<br />
 Lesson 5: character ranges<br />
-[A-Z]\w\w</p>
+[A-Z]\w\w<br />
+Lesson 6: catching some zzz’s<br />
+waz{3,5}up<br />
+Lesson 7: Mr. Kleene, Mr. Kleene<br />
+a+b*c+<br />
+Lesson 8: Characters optional<br />
+\d+ files? found\?<br />
+Lesson 9: all this whitespace<br />
+\d.\s+abc<br />
+Lesson 10: starting and ending<br />
+^Mission: successful<br />
+Lesson 11: match groups<br />
+^(file_\w+)\.pdf<br />
+Lesosn 12: nested groups<br />
+([A-Z][a-z][a-z] (\d\d\d\d))<br />
+Lesson 13: more group work<br />
+(\d{4})x(\d{3}\d?)<br />
+Lesosn 14: it’s all conditional<br />
+I love (cats|dogs)<br />
+Lesson 15: Other special characters (WTH)<br />
+[\s\w\d]{43}<a href="\s">\.\w</a>?([\S]{5})?\W?\D?(\D{8})?</p>
+<p>Problem 1:<br />
+-?\d+(\.\d+)*(e\d+)*(,\d+)*(\.\d+)*$</p>
+<p>Problem 2:<br />
+(\()*(1 )*(\d{3})([\s|-])*(\))*\d{3}([-|\s])*\d{4}<br />
+Problem 3:<br />
+(\w+(\.\w+)*)</p>
+<p>Problem 4: matching HTML<br />
+^&lt;(\w+)</p>
+<p>Problem 5: matching specific filenames<br />
+(\S+)\.(jpg|png|gif)$</p>
+<p>Problem 6: trimming whitespace from start and end of line<br />
+\s*(.*)\s*$</p>
+<p>Problem 7: extracting information from a log file<br />
+.*List\.(\w{8})\((\w{8}\.\w{4}):(\d{3}\d*)\)</p>
+<p>Problem 8: parsing and extrating data from a URL<br />
+(.*)://([\w\-\.]+)(:(\d+))*/.*</p>
+<div id="exercises-1" class="section level5">
+<h5>14.3.5.1 Exercises</h5>
+<ol style="list-style-type: decimal">
+<li>Describe, in words, what these expressions will match:<br />
+</li>
+</ol>
+<ul>
+<li>(.)</li>
+</ul>
+</div>
 </div>
 
 

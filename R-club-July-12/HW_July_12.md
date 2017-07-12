@@ -448,7 +448,7 @@ AddAnd(character())
 ## [1] "and"
 ```
 
-###RegExpOne exercises  
+###RegexOne exercises  
 Lesson 1: abc   
 Lesson 1 1/2: 123 or \\d\\d\\d   
 Lesson 2:  ...\\.  
@@ -457,7 +457,51 @@ Lesson 3: matching specific characters
 Lesson 4: exclusing specific characters  
 [^b]og  
 Lesson 5: character ranges  
-[A-Z]\\w\\w
+[A-Z]\\w\\w  
+Lesson 6: catching some zzz's  
+waz{3,5}up   
+Lesson 7: Mr. Kleene, Mr. Kleene    
+a+b*c+  
+Lesson 8: Characters optional  
+\\d+ files? found\\?  
+Lesson 9: all this whitespace  
+\\d\.\\s+abc  
+Lesson 10: starting and ending  
+^Mission: successful  
+Lesson 11: match groups  
+^(file_\\w+)\\.pdf  
+Lesosn 12: nested groups  
+([A-Z][a-z][a-z] (\\d\\d\\d\\d))  
+Lesson 13: more group work  
+(\\d{4})x(\\d{3}\\d?)  
+Lesosn 14: it's all conditional  
+I love (cats|dogs)  
+Lesson 15: Other special characters (WTH)  
+[\\s\\w\\d]{43}[\\.\\w](\\s)?([\\S]{5})?\\W?\\D?(\\D{8})?  
 
+Problem 1:  
+-?\\d+(\\.\\d+)\*(e\\d+)\*(,\\d+)\*(\\.\\d+)\*$     
 
+Problem 2:  
+(\\()\*(1 )\*(\\d{3})([\\s|-])\*(\\))\*\\d{3}([-|\\s])\*\\d{4}  
+Problem 3:  
+(\\w+(\\.\\w+)\*)  
 
+Problem 4: matching HTML  
+^<(\\w+)  
+
+Problem 5: matching specific filenames  
+(\\S+)\\.(jpg|png|gif)$  
+
+Problem 6: trimming whitespace from start and end of line  
+\\s\*(.\*)\\s*$  
+
+Problem 7: extracting information from a log file  
+.\*List\\.(\\w{8})\\((\\w{8}\\.\\w{4}):(\\d{3}\\d*)\\)  
+
+Problem 8: parsing and extrating data from a URL   
+(.\*)://([\\w\\-\\.]+)(:(\\d+))\*/.\*  
+
+#####14.3.5.1 Exercises  
+1. Describe, in words, what these expressions will match:  
+- (.)\1\1
