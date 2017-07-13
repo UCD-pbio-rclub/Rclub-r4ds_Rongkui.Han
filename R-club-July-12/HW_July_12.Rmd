@@ -244,4 +244,8 @@ Looking for abcxyzyzxcba. with "abc" and "cba" flanking anything.
 
 "\\W([A-Za-z][a-z]\*\\1[a-z]\*\\1\\W"
 
+```{r}
+pattern = "[A-za-z]*([A-Za-z])[a-z]*\\1[a-z]*\\1[A-Za-z]*"
+str_view_all("what silly sentence am I going to write for this exercise? Banana", pattern)
+```
 
